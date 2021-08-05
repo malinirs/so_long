@@ -2,7 +2,8 @@ NAME   = 	so_long
 
 SRC    = 	so_long.c \
 			get_next_line.c \
-			get_next_line_utils.c
+			get_next_line_utils.c \
+			move.c
 
 OBJ    = 	$(SRC:.c=.o)
 

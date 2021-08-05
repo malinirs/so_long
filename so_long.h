@@ -28,7 +28,15 @@ typedef struct	s_info
 /** координаты */
 	int		max_x;
 	int		max_y;
+	int		P_x;
+	int		P_y;
+
+/** счетчики */
+	int		step;
+	int		coins;
 }				t_info;
 
+void	close_program(t_info *info, int code);
+int		key_hook(int code, t_info *info);
 
 #endif
