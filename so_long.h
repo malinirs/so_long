@@ -3,7 +3,6 @@
 
 #include "qmlx/mlx.h"
 #include "get_next_line.h"
-
 #include <stdio.h>
 
 typedef struct	s_info
@@ -12,14 +11,9 @@ typedef struct	s_info
 	void	*mouse;
 	void	*sushi;
 	void	*wall;
-	void	*background;
+	void	*backgr;
 	void	*door;
 	char	**map;
-
-	char	*addr;
-	int		bits_per_pixel;
-	int		line_length;
-	int		endian;
 
 /** окно */
 	void	*mlx;
@@ -34,9 +28,15 @@ typedef struct	s_info
 /** счетчики */
 	int		step;
 	int		coins;
+	int		character;
+	int		escape;
+	int		background;
 }				t_info;
 
-void	close_program(t_info *info, int code);
+void	check_argc_and_open_map(int argc, char **argv, t_info *info);
+void	parsing_map(t_info *info, int x, int y);
+void	invalid_map(t_info *info);
+int		close_program(t_info *info, int code);
 int		key_hook(int code, t_info *info);
 
 #endif

@@ -3,7 +3,9 @@ NAME   = 	so_long
 SRC    = 	so_long.c \
 			get_next_line.c \
 			get_next_line_utils.c \
-			move.c
+			move.c \
+			check_argc.c \
+			parsing_map.c
 
 OBJ    = 	$(SRC:.c=.o)
 
