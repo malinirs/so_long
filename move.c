@@ -1,27 +1,5 @@
 #include "so_long.h"
 
-size_t	ft_strlcpy(char *dst, const char *src, size_t dstsize)
-{
-	size_t	i;
-
-	i = 0;
-	if (!dst || !src)
-		return (0);
-	if (dstsize > 0)
-	{
-		while (src[i] && i < (dstsize - 1))
-		{
-			dst[i] = src[i];
-			i++;
-		}
-		dst[i] = '\0';
-	}
-	i = 0;
-	while (src[i])
-		i++;
-	return (i);
-}
-
 char	*ft_check(int	n, int	znak)
 {
 	char	*str;
@@ -93,6 +71,8 @@ void	move(int x, int y, t_info *info)
 			info->P_y = info->P_y + y;
 			mlx_put_image_to_window(info->mlx, info->win, info->mouse, info->P_x * 64, info->P_y * 64);
 			info->map[info->P_y][info->P_x] = 'P';
+			info->step++;
+			printf("Step: %d\n", info->step);
 		}
 		else if (info->map[info->P_y + y][info->P_x + x] == 'C')
 		{
@@ -104,6 +84,8 @@ void	move(int x, int y, t_info *info)
 			mlx_put_image_to_window(info->mlx, info->win, info->backgr, info->P_x * 64, info->P_y * 64);
 			mlx_put_image_to_window(info->mlx, info->win, info->mouse, info->P_x * 64, info->P_y * 64);
 			info->coins--;
+			info->step++;
+			printf("Step: %d\n", info->step);
 		}
 		else if (info->map[info->P_y + y][info->P_x + x] == 'E' && info->coins == 0)
 		{
@@ -112,8 +94,7 @@ void	move(int x, int y, t_info *info)
 			printf("CONGRATULATIONS! YOU WIN!\n");
 			close_program(info, 0);
 		}
-		info->step++;
-		printf("Step: %d\n", info->step);
+
 
 
 		number_of_step = ft_itoa(info->step);

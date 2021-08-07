@@ -1,5 +1,60 @@
 #include "so_long.h"
 
+void	check_symbol_map(t_info *info, int x, int y)
+{
+	while (info->map[y])
+	{
+		x = 0;
+		while (info->map[y][x])
+		{
+			if (info->map[y][x] != '1' && info->map[y][x] != '0' && \
+			info->map[y][x] != 'P' &&  info->map[y][x] != 'C' && \
+			info->map[y][x] != 'E')
+				invalid_map(info);
+			x++;
+		}
+		y++;
+	}
+}
+
+void	file_read_error(t_info *info)
+{
+	printf("File read error!");
+	info->map = NULL;
+	close_program(info, -1);
+}
+
+void	memory_allocation_error(t_info *info)
+{
+	printf("Memory allocation error!");
+	info->map = NULL;
+	close_program(info, -1);
+}
+
+int		check_len_y(char **argv, t_info *info)
+{
+	int		y;
+	int		fd;
+	int		len;
+	char	c;
+
+	y = 0;
+	len = 0;
+	fd = open (argv[1], O_RDONLY);
+	if (fd < 0)
+		file_read_error(info);
+	while (read(fd, &c, 1))
+	{
+		if (c == '\n')
+			y++;
+		len++;
+	}
+	if (len < 0)
+		memory_allocation_error(info);
+	close(fd);
+	return (y + 2);
+}
+
 void	open_file(t_info *info, char **argv)
 {
 	char	*line;
@@ -7,18 +62,19 @@ void	open_file(t_info *info, char **argv)
 	int		y;
 
 	y = 0;
-	info->map = (char **)malloc(sizeof(char *) * 100);
+	info->map = (char **)malloc(sizeof(char *) * (check_len_y(argv, info)));
 	fd = open (argv[1], O_RDONLY);
+	if (fd < 0)
+		file_read_error(info);
 	while (get_next_line(fd, &line))
 	{
 		info->map[y] = line;
-		printf("%s\n", info->map[y]);
 		y++;
 	}
 	info->map[y] = line;
-	printf("%s\n", info->map[y]);
 	info->max_y = y;
 	info->max_x = ft_strlen(info->map[0]);
+	close(fd);
 }
 
 void	check_extension_file(char *str)
@@ -47,6 +103,7 @@ void	check_argc_and_open_map(int argc, char **argv, t_info *info)
 	{
 		check_extension_file(argv[1]);
 		open_file(info, argv);
+		check_symbol_map(info, 0, 0);
 	}
 	else if (argc > 2)
 	{

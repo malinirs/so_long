@@ -1,32 +1,25 @@
-#include "get_next_line.h"
+#include "so_long.h"
 
-char	*ft_strjoin(char *s1, char *s2)
+size_t	ft_strlcpy(char *dst, const char *src, size_t dstsize)
 {
-	char	*str;
 	size_t	i;
-	size_t	j;
 
-	if (!s1)
-		return (ft_strdup(s2));
 	i = 0;
-	str = malloc(ft_strlen(s1) + ft_strlen(s2) + 1);
-	if (!str)
-		return (NULL);
-	while (s1[i] != '\0')
+	if (!dst || !src)
+		return (0);
+	if (dstsize > 0)
 	{
-		str[i] = s1[i];
-		i++;
+		while (src[i] && i < (dstsize - 1))
+		{
+			dst[i] = src[i];
+			i++;
+		}
+		dst[i] = '\0';
 	}
-	j = 0;
-	while (s2[j] != '\0')
-	{
-		str[i] = s2[j];
+	i = 0;
+	while (src[i])
 		i++;
-		j++;
-	}
-	str[i] = '\0';
-	free(s1);
-	return (str);
+	return (i);
 }
 
 int 	ft_strlen(char *str)
@@ -57,17 +50,6 @@ char	*ft_strchr(char *s, int c)
 	return (0);
 }
 
-char	*ft_strdup(char *s1)
-{
-	char	*str;
-
-	str = malloc(ft_strlen(s1) + 1);
-	if (!str)
-		return (NULL);
-	ft_strcpy(str, s1);
-	return (str);
-}
-
 char	*ft_strcpy(char *s1, char *s2)
 {
 	int		i;
@@ -80,4 +62,46 @@ char	*ft_strcpy(char *s1, char *s2)
 	}
 	s1[i] = '\0';
 	return (s1);
+}
+
+char	*ft_strdup(char *s1)
+{
+	char	*str;
+
+	str = malloc(ft_strlen(s1) + 1);
+	if (!str)
+		return (NULL);
+	ft_strcpy(str, s1);
+	return (str);
+}
+
+
+
+char	*ft_strjoin(char *s1, char *s2)
+{
+	char	*str;
+	size_t	i;
+	size_t	j;
+
+	if (!s1)
+		return (ft_strdup(s2));
+	i = 0;
+	str = malloc(ft_strlen(s1) + ft_strlen(s2) + 1);
+	if (!str)
+		return (NULL);
+	while (s1[i] != '\0')
+	{
+		str[i] = s1[i];
+		i++;
+	}
+	j = 0;
+	while (s2[j] != '\0')
+	{
+		str[i] = s2[j];
+		i++;
+		j++;
+	}
+	str[i] = '\0';
+	free(s1);
+	return (str);
 }
