@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   so_long.c                                          :+:      :+:    :+:   */
+/*   so_long_bonus.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: awoods <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/08/08 12:09:48 by awoods            #+#    #+#             */
-/*   Updated: 2021/08/08 12:09:52 by awoods           ###   ########.fr       */
+/*   Created: 2021/08/08 21:55:40 by awoods            #+#    #+#             */
+/*   Updated: 2021/08/08 21:55:42 by awoods           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,13 @@ static void	init_icon(t_info *info)
 {
 	info->P_x = 0;
 	info->P_y = 0;
+	info->mouse_n = mlx_xpm_file_to_image(info->mlx, "./icon/mouse_n.xpm", \
+										 &info->P_x, &info->P_y);
+	info->mouse_p = mlx_xpm_file_to_image(info->mlx, "./icon/mouse_p.xpm", \
+										 &info->P_x, &info->P_y);
 	info->mouse_v = mlx_xpm_file_to_image(info->mlx, "./icon/mouse_v.xpm", \
+										 &info->P_x, &info->P_y);
+	info->mouse_l = mlx_xpm_file_to_image(info->mlx, "./icon/mouse_l.xpm", \
 										 &info->P_x, &info->P_y);
 	info->sushi = mlx_xpm_file_to_image(info->mlx, "./icon/sushi.xpm", \
 										&info->P_x, &info->P_y);
@@ -25,6 +31,8 @@ static void	init_icon(t_info *info)
 	info->backgr = mlx_xpm_file_to_image(info->mlx, "./icon/square.xpm", \
 										 &info->P_x, &info->P_y);
 	info->door = mlx_xpm_file_to_image(info->mlx, "./icon/door.xpm", \
+									   &info->P_x, &info->P_y);
+	info->close = mlx_xpm_file_to_image(info->mlx, "./icon/close.xpm", \
 									   &info->P_x, &info->P_y);
 }
 
@@ -67,7 +75,7 @@ int	main(int argc, char **argv)
 	check_argc_and_open_map(argc, argv, &info);
 	info.mlx = mlx_init();
 	info.win = mlx_new_window(info.mlx, info.max_x * 64, info.max_y * 64, \
-							  "So long: bat on the hunt!");
+							  "So long bonus: bat on the hunt!");
 	init_icon(&info);
 	init_info_count(&info);
 	put_icon(&info, 0, 0);

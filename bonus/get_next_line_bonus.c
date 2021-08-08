@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line.c                                    :+:      :+:    :+:   */
+/*   get_next_line_bonus.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: awoods <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/08/08 12:08:17 by awoods            #+#    #+#             */
-/*   Updated: 2021/08/08 12:08:22 by awoods           ###   ########.fr       */
+/*   Created: 2021/08/08 21:56:55 by awoods            #+#    #+#             */
+/*   Updated: 2021/08/08 21:56:57 by awoods           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 
-static int	check_remainder(char	*remainder)
+static int	check_remainder(char *remainder)
 {
 	if (!remainder)
 		return (0);
