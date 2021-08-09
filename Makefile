@@ -28,11 +28,12 @@ B_OBJ	=	$(B_SRC:.c=.o)
 
 CFLAGS	=	-Werror -Wextra -Wall
 
-all		: $(NAME) $(B_NAME)
+all		: $(NAME)
 
 
 $(NAME) : $(OBJ)
 	gcc $(SRC) -o $(NAME) -lmlx -framework OpenGL -framework AppKit -I
+
 
 bonus	:	$(B_OBJ)
 	gcc $(B_SRC) -o $(B_NAME) -lmlx -framework OpenGL -framework AppKit -I

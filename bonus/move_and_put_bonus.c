@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "so_long.h"
+#include "so_long_bonus.h"
 
 static void	open_window(t_info *info)
 {
@@ -47,7 +47,6 @@ void	move_C(int x, int y, t_info *info)
 									info->P_x * 64, info->P_y * 64);
 	info->coins--;
 	info->step++;
-	printf("Step: %d\n", info->step);
 	open_window(info);
 }
 

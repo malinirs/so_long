@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "so_long.h"
+#include "so_long_bonus.h"
 
 static void	move_0(int x, int y, t_info *info)
 {
@@ -33,7 +33,6 @@ static void	move_0(int x, int y, t_info *info)
 									info->P_x * 64, info->P_y * 64);
 	info->map[info->P_y][info->P_x] = 'P';
 	info->step++;
-	printf("Step: %d\n", info->step);
 }
 
 static void	move(int x, int y, t_info *info)
